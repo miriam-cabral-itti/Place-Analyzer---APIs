@@ -1,0 +1,3266 @@
+{
+	"info": {
+		"_postman_id": "fbbba38b-67dd-45bd-a064-c6b2640a8e5f",
+		"name": "PlaceAnalyzer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37271661",
+		"_collection_link": "https://team-de-ejemplo.postman.co/workspace/Team-de-ejemplo-Workspace~a65d5975-d09b-4aa3-8543-6dde9ae2b54c/collection/37271661-fbbba38b-67dd-45bd-a064-c6b2640a8e5f?action=share&source=collection_link&creator=37271661"
+	},
+	"item": [
+		{
+			"name": "BFF",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"/*var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"Token\", jsonData.accessToken);\r",
+									"pm.globals.set(\"refreshToken\", jsonData.refreshToken);\r",
+									"pm.globals.set(\"userCode\", jsonData.user.userCode);\r",
+									"console.log(userCode);\r",
+									"pm.test(\"El test fue exitoso\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});*/\r",
+									"\r",
+									"// Parsear la respuesta JSON\r",
+									"let jsonData = pm.response.json();\r",
+									"pm.globals.set(\"Token\", jsonData.accessToken);\r",
+									"pm.globals.set(\"refreshToken\", jsonData.refreshToken);\r",
+									"// Verificar si userCode existe antes de guardarlo\r",
+									"if (jsonData.user && jsonData.user.userCode) {\r",
+									"    // Almacenar el valor de userCode en una variable global\r",
+									"    pm.globals.set(\"userCode\", jsonData.user.userCode);\r",
+									"    console.log(\"userCode almacenado:\", jsonData.user.userCode);\r",
+									"} else {\r",
+									"    console.log(\"userCode no encontrado en la respuesta\");\r",
+									"}\r",
+									"\r",
+									"pm.test(\"El test fue exitoso\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true,
+							"accept": true,
+							"accept-encoding": true,
+							"connection": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-control-person-code",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"miriam.cabral@itti.digital\",\r\n  \"password\": \"Kony!12345\",\r\n  \"phoneId\": \"string\",\r\n  \"brand\": \"string\",\r\n  \"model\": \"string\",\r\n  \"so\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://stg-place-apis-load-balancer-1860870059.sa-east-1.elb.amazonaws.com:3000/api/auth/sign-in",
+							"protocol": "http",
+							"host": [
+								"stg-place-apis-load-balancer-1860870059",
+								"sa-east-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Api Sign in",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-control-person-code",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://stg-place-apis-load-balancer-1860870059.sa-east-1.elb.amazonaws.com:3000/api/auth/api-sign-in",
+							"protocol": "http",
+							"host": [
+								"stg-place-apis-load-balancer-1860870059",
+								"sa-east-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"api-sign-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"Token\", jsonData.accessToken);\r",
+									"pm.globals.set(\"refreshToken\", jsonData.refreshToken);\r",
+									"pm.test(\"El test fue exitoso\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-control-person-code",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n\"newPassword\": \"dddddddsddgggdgA\",\r\n\"password\" :\"jdhjdhjhdshosj\",\r\n\"username\": \"miriam.cabral@itti.digital\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://stg-place-apis-load-balancer-1860870059.sa-east-1.elb.amazonaws.com:3000/api/auth/change-password",
+							"protocol": "http",
+							"host": [
+								"stg-place-apis-load-balancer-1860870059",
+								"sa-east-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AppraisalApi",
+			"item": [
+				{
+					"name": "Crear avalúo async",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"requestId\", jsonData.requestId);\r",
+									"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    //\"user\":\"04pcabrera@gmail.com\",\r\n    \"lng\": -57.557550072,\r\n    \"lat\": -25.2679929304,\r\n    \"requestType\": \"FULL\",\r\n    \"tipo\": \"Terreno\",\r\n    \"lujo\": false,\r\n    \"m2Terreno\": 320,\r\n    \"m2Inmueble\": 0,\r\n    \"cuenta\": \"04pcabrera@gmail.com\",\r\n    \"userLng\": -57.567599,\r\n    \"userLat\": -25.298851,\r\n    \"dormitorios\": 0,\r\n    \"banios\": 0,\r\n    \"garajes\": 0,\r\n    \"piscina\": 0,\r\n    \"areaServicio\": 0,\r\n    \"balcon\": 0,\r\n    \"gimnasio\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{staging3000}}/api/appraisal/async",
+							"host": [
+								"{{staging3000}}"
+							],
+							"path": [
+								"api",
+								"appraisal",
+								"async"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear avalúo async Caso 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"requestId\", jsonData.requestId);\r",
+									"\r",
+									"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"lng\": -57.600,\r\n    \"lat\": -25.300,\r\n    \"requestType\": \"FULL\",\r\n    \"tipo\": \"Casa\",\r\n    \"lujo\": true,\r\n    \"m2Terreno\": 300,\r\n    \"m2Inmueble\": 120,\r\n    \"cuenta\": \"04pcabrera@gmail.com\",\r\n    \"userLng\": -57.590 ,\r\n    \"userLat\": -25.310,\r\n    \"dormitorios\": 4,\r\n    \"banios\": 3,\r\n    \"garajes\": 2,\r\n    \"piscina\": 1,\r\n    \"areaServicio\": 3,\r\n    \"balcon\": 2,\r\n    \"gimnasio\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{staging3000}}/api/appraisal/async",
+							"host": [
+								"{{staging3000}}"
+							],
+							"path": [
+								"api",
+								"appraisal",
+								"async"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear avalúo async Caso 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"requestId\", jsonData.requestId);\r",
+									"\r",
+									"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"lng\": -57.500,\r\n    \"lat\": -25.200,\r\n    \"requestType\": \"FULL\",\r\n    \"tipo\": \"Departamento\",\r\n    \"lujo\": false,\r\n    \"m2Terreno\": 400,\r\n    \"m2Inmueble\": 100,\r\n    \"cuenta\": \"04pcabrera@gmail.com\",\r\n    \"userLng\": -57.550,\r\n    \"userLat\": -25.200,\r\n    \"dormitorios\": 2,\r\n    \"banios\": 2,\r\n    \"garajes\": 1,\r\n    \"piscina\": 0,\r\n    \"areaServicio\":0,\r\n    \"balcon\": 5,\r\n    \"gimnasio\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{staging3000}}/api/appraisal/async",
+							"host": [
+								"{{staging3000}}"
+							],
+							"path": [
+								"api",
+								"appraisal",
+								"async"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear avalúo async Caso 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"requestId\", jsonData.requestId);\r",
+									"\r",
+									"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"lng\": -57.600,\r\n    \"lat\": -25.400,\r\n    \"requestType\": \"FULL\",\r\n    \"tipo\": \"Duplex\",\r\n    \"lujo\": true,\r\n    \"m2Terreno\": 300,\r\n    \"m2Inmueble\": 120,\r\n    \"cuenta\": \"04pcabrera@gmail.com\",\r\n    \"userLng\": -57.567599,\r\n    \"userLat\": -25.298851,\r\n    \"dormitorios\": 6,\r\n    \"banios\": 2,\r\n    \"garajes\": 2,\r\n    \"piscina\": 1,\r\n    \"areaServicio\":1,\r\n    \"balcon\": 3,\r\n    \"gimnasio\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{staging3000}}/api/appraisal/async",
+							"host": [
+								"{{staging3000}}"
+							],
+							"path": [
+								"api",
+								"appraisal",
+								"async"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear avalúo async Caso 4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"requestId\", jsonData.requestId);\r",
+									"\r",
+									"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"lng\": \"long\",\r\n    \"lat\": -25.300,\r\n    \"requestType\": \"FULL\",\r\n    \"tipo\": \"Casa\",\r\n    \"lujo\": true,\r\n    \"m2Terreno\": 300,\r\n    \"m2Inmueble\": 120,\r\n    \"cuenta\": \"04pcabrera@gmail.com\",\r\n    \"userLng\": -57.600,\r\n    \"userLat\": -25.320,\r\n    \"dormitorios\": 3,\r\n    \"banios\": 2,\r\n    \"garajes\": 2,\r\n    \"piscina\": 1,\r\n    \"areaServicio\":1,\r\n    \"balcon\": 1,\r\n    \"gimnasio\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{staging3000}}/api/appraisal/async",
+							"host": [
+								"{{staging3000}}"
+							],
+							"path": [
+								"api",
+								"appraisal",
+								"async"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear avalúo async Caso 4 Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"requestId\", jsonData.requestId);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"lng\": -57.600,\r\n    \"lat\": 100,\r\n    \"requestType\": \"FULL\",\r\n    \"tipo\": \"Casa\",\r\n    \"lujo\": true,\r\n    \"m2Terreno\": 300,\r\n    \"m2Inmueble\": 250,\r\n    \"cuenta\": \"04pcabrera@gmail.com\",\r\n    \"userLng\": -57.600,\r\n    \"userLat\": -25.320,\r\n    \"dormitorios\": 3,\r\n    \"banios\": 4,\r\n    \"garajes\": 2,\r\n    \"piscina\": 1,\r\n    \"areaServicio\":3,\r\n    \"balcon\": 2,\r\n    \"gimnasio\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{staging3000}}/api/appraisal/async",
+							"host": [
+								"{{staging3000}}"
+							],
+							"path": [
+								"api",
+								"appraisal",
+								"async"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear avalúo async Caso 5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"requestId\", jsonData.requestId);\r",
+									"\r",
+									"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"lng\": 57.600,\r\n    \"lat\": -25.300,\r\n    \"requestType\": \"FULL\",\r\n    \"tipo\": 1234,\r\n    \"lujo\": true,\r\n    \"m2Terreno\": 300,\r\n    \"m2Inmueble\": 120,\r\n    \"cuenta\": \"04pcabrera@gmail.com\",\r\n    \"userLng\": -57.600,\r\n    \"userLat\": -25.320,\r\n    \"dormitorios\": 3,\r\n    \"banios\": 2,\r\n    \"garajes\": 2,\r\n    \"piscina\": 1,\r\n    \"areaServicio\":1,\r\n    \"balcon\": 1,\r\n    \"gimnasio\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{staging3000}}/api/appraisal/async",
+							"host": [
+								"{{staging3000}}"
+							],
+							"path": [
+								"api",
+								"appraisal",
+								"async"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear avalúo async Caso 6",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"requestId\", jsonData.requestId);\r",
+									"\r",
+									"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"lng\": 57.700,\r\n    \"lat\": -25.300,\r\n    \"requestType\": \"FULL\",\r\n    \"tipo\": \"Terreno\",\r\n    \"lujo\": true,\r\n    \"m2Terreno\": 300,\r\n    \"m2Inmueble\": 120,\r\n    \"cuenta\": \"04pcabrera@gmail.com\",\r\n    \"userLng\": -57.600,\r\n    \"userLat\": -25.320,\r\n    \"dormitorios\": 3,\r\n    \"banios\": 2,\r\n    \"garajes\": 2,\r\n    \"piscina\": 1,\r\n    \"areaServicio\":1,\r\n    \"balcon\": 1,\r\n    \"gimnasio\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{staging3000}}/api/appraisal/async",
+							"host": [
+								"{{staging3000}}"
+							],
+							"path": [
+								"api",
+								"appraisal",
+								"async"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear avalúo async Caso 7",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"requestId\", jsonData.requestId);\r",
+									"\r",
+									"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"lng\": -57.500,\r\n    \"lat\": -25.200,\r\n    \"requestType\": \"FULL\",\r\n    \"tipo\": \"Casa\",\r\n    \"lujo\": false,\r\n    \"m2Terreno\": 100,\r\n    \"m2Inmueble\": 800,\r\n    \"cuenta\": \"04pcabrera@gmail.com\",\r\n    \"userLng\": -57.550,\r\n    \"userLat\": -25.200,\r\n    \"dormitorios\": 2,\r\n    \"banios\": 2,\r\n    \"garajes\": 1,\r\n    \"piscina\": 0,\r\n    \"areaServicio\":0,\r\n    \"balcon\": 20,\r\n    \"gimnasio\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{staging3000}}/api/appraisal/async",
+							"host": [
+								"{{staging3000}}"
+							],
+							"path": [
+								"api",
+								"appraisal",
+								"async"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear avalúo async Caso 8",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"requestId\", jsonData.requestId);\r",
+									"\r",
+									"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"lng\": -57.500,\r\n    \"lat\": -25.200,\r\n    \"requestType\": \"FULL\",\r\n    \"tipo\": \"Casa\",\r\n    \"lujo\": false,\r\n    \"m2Terreno\": 100,\r\n    \"m2Inmueble\": 800,\r\n    \"cuenta\": \"04pcabrera@gmail.com\",\r\n    \"userLng\": -57.550,\r\n    \"userLat\": -25.200,\r\n    \"dormitorios\": 2,\r\n    \"banios\": 100,\r\n    \"garajes\": 1,\r\n    \"piscina\": 0,\r\n    \"areaServicio\":0,\r\n    \"balcon\": 20,\r\n    \"gimnasio\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{staging3000}}/api/appraisal/async",
+							"host": [
+								"{{staging3000}}"
+							],
+							"path": [
+								"api",
+								"appraisal",
+								"async"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear avalúo async Caso 9",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"requestId\", jsonData.requestId);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"lng\": -57.500,\r\n    \"lat\": -25.200,\r\n    \"requestType\": \"FULL\",\r\n    \"tipo\": \"Casa\",\r\n    \"lujo\": false,\r\n    \"m2Terreno\": 100,\r\n    \"m2Inmueble\": 800,\r\n    \"cuenta\": \"04pcabrera@gmail.com\",\r\n    \"userLng\": -57.550,\r\n    \"userLat\": -25.200,\r\n    \"dormitorios\": 2000,\r\n    \"banios\": 100,\r\n    \"garajes\": 1,\r\n    \"piscina\": 0,\r\n    \"areaServicio\":0,\r\n    \"balcon\": 20,\r\n    \"gimnasio\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{staging3000}}/api/appraisal/async",
+							"host": [
+								"{{staging3000}}"
+							],
+							"path": [
+								"api",
+								"appraisal",
+								"async"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear avalúo retry",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"requestId\": \"{{requestId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{staging3000}}/api/appraisal/retry",
+							"host": [
+								"{{staging3000}}"
+							],
+							"path": [
+								"api",
+								"appraisal",
+								"retry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Avalúo",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"id\", \"dOHdwbdNrM\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{staging3000}}/api/appraisal/{{requestId}}",
+							"host": [
+								"{{staging3000}}"
+							],
+							"path": [
+								"api",
+								"appraisal",
+								"{{requestId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Avalúo Retry",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"id\", \"dOHdwbdNrM\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{staging3000}}/api/appraisal/retry",
+							"host": [
+								"{{staging3000}}"
+							],
+							"path": [
+								"api",
+								"appraisal",
+								"retry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sectors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{staging3000}}/api/appraisal/sectors",
+							"host": [
+								"{{staging3000}}"
+							],
+							"path": [
+								"api",
+								"appraisal",
+								"sectors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sector Types",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{staging3000}}/api/appraisal/sectors/Agroganadero/types",
+							"host": [
+								"{{staging3000}}"
+							],
+							"path": [
+								"api",
+								"appraisal",
+								"sectors",
+								"Agroganadero",
+								"types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sector Types unexistent",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{staging3000}}/api/appraisal/sectors/UnexistentType/types",
+							"host": [
+								"{{staging3000}}"
+							],
+							"path": [
+								"api",
+								"appraisal",
+								"sectors",
+								"UnexistentType",
+								"types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Historico - Mapa",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{staging3000}}/api/appraisal/history/map-view?sw=-57.57147073745728,-25.271845197467485&ne=-57.56934642791749,-25.259542431244885&se=-57.56934642791749,-25.271845197467485&nw=-57.57147073745728,-25.259542431244885",
+							"host": [
+								"{{staging3000}}"
+							],
+							"path": [
+								"api",
+								"appraisal",
+								"history",
+								"map-view"
+							],
+							"query": [
+								{
+									"key": "sw",
+									"value": "-57.57147073745728,-25.271845197467485"
+								},
+								{
+									"key": "ne",
+									"value": "-57.56934642791749,-25.259542431244885"
+								},
+								{
+									"key": "se",
+									"value": "-57.56934642791749,-25.271845197467485"
+								},
+								{
+									"key": "nw",
+									"value": "-57.57147073745728,-25.259542431244885"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Historico - Lista",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{staging3000}}/api/appraisal/history/list-view?&desde=2024-10-11&hasta=2024-10-31&page=0&size=20",
+							"host": [
+								"{{staging3000}}"
+							],
+							"path": [
+								"api",
+								"appraisal",
+								"history",
+								"list-view"
+							],
+							"query": [
+								{
+									"key": null,
+									"value": null
+								},
+								{
+									"key": "desde",
+									"value": "2024-10-11"
+								},
+								{
+									"key": "hasta",
+									"value": "2024-10-31"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Historico - Lista Fecha Superior de filtro es anterior a Fecha Inferior",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{staging3000}}/api/appraisal/history/list-view?&desde=2024-12-11&hasta=2024-10-31&page=0&size=20",
+							"host": [
+								"{{staging3000}}"
+							],
+							"path": [
+								"api",
+								"appraisal",
+								"history",
+								"list-view"
+							],
+							"query": [
+								{
+									"key": null,
+									"value": null
+								},
+								{
+									"key": "desde",
+									"value": "2024-12-11"
+								},
+								{
+									"key": "hasta",
+									"value": "2024-10-31"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Historico - Lista traer todos los tipos de propiedades",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{staging3000}}/api/appraisal/history/list-view?&tipo=Todos&desde=2024-10-11&hasta=2024-10-31&page=0&size=20",
+							"host": [
+								"{{staging3000}}"
+							],
+							"path": [
+								"api",
+								"appraisal",
+								"history",
+								"list-view"
+							],
+							"query": [
+								{
+									"key": null,
+									"value": null
+								},
+								{
+									"key": "tipo",
+									"value": "Todos"
+								},
+								{
+									"key": "desde",
+									"value": "2024-10-11"
+								},
+								{
+									"key": "hasta",
+									"value": "2024-10-31"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Company",
+			"item": [
+				{
+					"name": "get all companies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-control-person-code",
+								"value": "ba72a2ed6d1af993726c2a84f8b009d27b87100452e28d47498fbacd4f5baaef",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{staging3000}}/api/company/all",
+							"host": [
+								"{{staging3000}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"all"
+							],
+							"query": [
+								{
+									"key": "read",
+									"value": "0",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get company by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"code\", jsonData.code);\r",
+									"\r",
+									"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-control-person-code",
+								"value": "ba72a2ed6d1af993726c2a84f8b009d27b87100452e28d47498fbacd4f5baaef",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{staging3000}}/api/company/425/agency",
+							"host": [
+								"{{staging3000}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"425",
+								"agency"
+							],
+							"query": [
+								{
+									"key": "read",
+									"value": "0",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get company by agency",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-control-person-code",
+								"value": "ba72a2ed6d1af993726c2a84f8b009d27b87100452e28d47498fbacd4f5baaef",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{staging3000}}/api/company/agency/1037/positions",
+							"host": [
+								"{{staging3000}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"agency",
+								"1037",
+								"positions"
+							],
+							"query": [
+								{
+									"key": "read",
+									"value": "0",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notificaciones",
+			"item": [
+				{
+					"name": "Obtener listado de notificaciones",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{staging3000}}/api/notification/list?page=0&type=REPORT_READY&read=false",
+							"host": [
+								"{{staging3000}}"
+							],
+							"path": [
+								"api",
+								"notification",
+								"list"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "type",
+									"value": "REPORT_READY"
+								},
+								{
+									"key": "read",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener notification por id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{staging3000}}/api/notification/426/read",
+							"host": [
+								"{{staging3000}}"
+							],
+							"path": [
+								"api",
+								"notification",
+								"426",
+								"read"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Place Analyzer Api",
+			"item": [
+				{
+					"name": "Placeview",
+					"item": [
+						{
+							"name": "get all photos",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+											"});\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Access-control-person-code",
+										"value": "ba72a2ed6d1af993726c2a84f8b009d27b87100452e28d47498fbacd4f5baaef",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{staging3000}}/api/placeview/fotos360?usuario_id=3866&search=&zoomFilter=true&nw=-57.58882999420167%2C-25.261629140594838&ne=-57.57925987243653%2C-25.261629140594838&se=-57.57925987243653%2C-25.266849146551007&sw=-57.58882999420167%2C-25.266849146551007",
+									"host": [
+										"{{staging3000}}"
+									],
+									"path": [
+										"api",
+										"placeview",
+										"fotos360"
+									],
+									"query": [
+										{
+											"key": "usuario_id",
+											"value": "3866"
+										},
+										{
+											"key": "search",
+											"value": ""
+										},
+										{
+											"key": "zoomFilter",
+											"value": "true"
+										},
+										{
+											"key": "nw",
+											"value": "-57.58882999420167%2C-25.261629140594838"
+										},
+										{
+											"key": "ne",
+											"value": "-57.57925987243653%2C-25.261629140594838"
+										},
+										{
+											"key": "se",
+											"value": "-57.57925987243653%2C-25.266849146551007"
+										},
+										{
+											"key": "sw",
+											"value": "-57.58882999420167%2C-25.266849146551007"
+										},
+										{
+											"key": "read",
+											"value": "0",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "upload photo",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.globals.set(\"Token\", jsonData.accessToken);\r",
+											"pm.globals.set(\"refreshToken\", jsonData.refreshToken);\r",
+											"pm.test(\"El test fue exitoso\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Access-control-person-code",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"usuario_id\": 3866,\r\n  \"edited\": true,\r\n  \"found\": true,\r\n  \"id\": 22264,\r\n  \"imgUrl\": \"string\",\r\n  \"lat\": \"string\",\r\n  \"lng\": \"string\",\r\n  \"text\": \"string\",\r\n  \"descripcion\": \"string\",\r\n  \"viewed\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{staging3000}}/api/placeview/fotos360/vistas",
+									"host": [
+										"{{staging3000}}"
+									],
+									"path": [
+										"api",
+										"placeview",
+										"fotos360",
+										"vistas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Upload photo by ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.globals.set(\"Token\", jsonData.accessToken);\r",
+											"pm.globals.set(\"refreshToken\", jsonData.refreshToken);\r",
+											"pm.test(\"El test fue exitoso\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Access-control-person-code",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"usuario_id\": 0,\r\n  \"edited\": true,\r\n  \"found\": true,\r\n  \"id\": 0,\r\n  \"imgUrl\": \"string\",\r\n  \"lat\": \"string\",\r\n  \"lng\": \"string\",\r\n  \"text\": \"string\",\r\n  \"descripcion\": \"string\",\r\n  \"viewed\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{staging3000}}/api/placeview/fotos360/vistas/22264",
+									"host": [
+										"{{staging3000}}"
+									],
+									"path": [
+										"api",
+										"placeview",
+										"fotos360",
+										"vistas",
+										"22264"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "get user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+											"});\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Access-control-person-code",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{staging}}/pa/user",
+									"host": [
+										"{{staging}}"
+									],
+									"path": [
+										"pa",
+										"user"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "get with code",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Access-control-person-code",
+												"value": "",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{api-gw-url}}/pa/user",
+											"host": [
+												"{{api-gw-url}}"
+											],
+											"path": [
+												"pa",
+												"user"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 02 Sep 2024 14:33:49 GMT"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Referrer-Policy",
+											"value": "no-referrer"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 3031,\n    \"documentNumber\": \"3509091\",\n    \"userName\": \"pedro.amarilla@itti.digital\",\n    \"name\": \"Pedro Amarilla\",\n    \"lastName\": \"Pedro Amarilla\",\n    \"birthday\": \"\",\n    \"active\": true,\n    \"ruc\": \"3509091-0\",\n    \"razonSocial\": \"Pedro Amarilla\",\n    \"linkImage\": null,\n    \"documentTypeId\": 1,\n    \"contact\": {\n        \"code\": \"CEL\",\n        \"contact\": \"595971916310\",\n        \"principal\": true\n    },\n    \"company\": {\n        \"code\": 1459,\n        \"name\": \"ITTI Digital\",\n        \"agency\": \"ITTI Digital\"\n    },\n    \"socialMedia\": []\n}"
+								}
+							]
+						},
+						{
+							"name": "get user code",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+											"});\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{staging}}/pa/user/shared-accounts",
+									"host": [
+										"{{staging}}"
+									],
+									"path": [
+										"pa",
+										"user",
+										"shared-accounts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+											"});\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Access-control-person-code",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Pedro\",\r\n    \"lastName\": \"Amarilla\",\r\n    \"documentNumber\": \"6837940\",\r\n    \"birthday\": \"2000-01-02\",\r\n    \"contact\": \"+595111111111\",\r\n    \"ruc\": \"6837940-4\",\r\n    \"businessName\": \"\",\r\n    \"linkImage\": \"\",\r\n    \"socialMedia\": [\r\n        {\r\n            \"code\": \"IN\",\r\n            \"link\": \"https://instagram.com/user\"\r\n        },\r\n        {\r\n            \"code\": \"FB\",\r\n            \"link\": \"https://facebook.com/user\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{staging}}/pa/user",
+									"host": [
+										"{{staging}}"
+									],
+									"path": [
+										"pa",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update labor info",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+											"});\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"positionId\": 843,\r\n    \"comision\": 10\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{staging}}/pa/user/labor-info",
+									"host": [
+										"{{staging}}"
+									],
+									"path": [
+										"pa",
+										"user",
+										"labor-info"
+									]
+								},
+								"description": "Generated from cURL: curl --location --request PATCH 'http://localhost:8080/pa/user/company' \\\r\n--header 'Access-control-person-code: ba72a2ed6d1af993726c2a84f8b009d27b87100452e28d47498fbacd4f5baaef' \\\r\n--header 'Content-Type: application/json' \\\r\n--data '{\r\n    \"positionId\": 843,\r\n    \"comision\": 10\r\n}'"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Estates",
+					"item": [
+						{
+							"name": "estates-map-view-list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{staging3000}}/api/estate/map-view?sw=-57.68131256103516%2C-25.505263490227442&se=-57.56526947021485%2C-25.505263490227442&ne=-57.56526947021485%2C-25.306166036627506&nw=-57.68131256103516%2C-25.306166036627506&TipoPropiedad=departamento",
+									"host": [
+										"{{staging3000}}"
+									],
+									"path": [
+										"api",
+										"estate",
+										"map-view"
+									],
+									"query": [
+										{
+											"key": "sw",
+											"value": "-57.68131256103516%2C-25.505263490227442"
+										},
+										{
+											"key": "se",
+											"value": "-57.56526947021485%2C-25.505263490227442"
+										},
+										{
+											"key": "ne",
+											"value": "-57.56526947021485%2C-25.306166036627506"
+										},
+										{
+											"key": "tipo",
+											"value": "Terreno",
+											"disabled": true
+										},
+										{
+											"key": "ciudad",
+											"value": "Asuncion",
+											"disabled": true
+										},
+										{
+											"key": "nw",
+											"value": "-57.68131256103516%2C-25.306166036627506"
+										},
+										{
+											"key": "TipoPropiedad",
+											"value": "departamento"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "estates-list-view-list",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"dormitorios\": 4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{staging3000}}/api/estate/list-view?pageSize=15&page=2",
+									"host": [
+										"{{staging3000}}"
+									],
+									"path": [
+										"api",
+										"estate",
+										"list-view"
+									],
+									"query": [
+										{
+											"key": "pageSize",
+											"value": "15"
+										},
+										{
+											"key": "page",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "estate-draft-list-view",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Access-control-person-code",
+										"value": "ba72a2ed6d1af993726c2a84f8b009d27b87100452e28d47498fbacd4f5baaef",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{staging3000}}/api/estate/draft/list-view?pageSize=15&borrador=true&page=1",
+									"host": [
+										"{{staging3000}}"
+									],
+									"path": [
+										"api",
+										"estate",
+										"draft",
+										"list-view"
+									],
+									"query": [
+										{
+											"key": "pageSize",
+											"value": "15"
+										},
+										{
+											"key": "borrador",
+											"value": "true"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "estate-draft-map-view",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Access-control-person-code",
+										"value": "ba72a2ed6d1af993726c2a84f8b009d27b87100452e28d47498fbacd4f5baaef",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{staging3000}}/api/estate/draft/map-view?sw=-57.68131256103516%2C-25.505263490227442&se=-57.56526947021485%2C-25.505263490227442&ne=-57.56526947021485%2C-25.306166036627506&nw=-57.68131256103516%2C-25.306166036627506",
+									"host": [
+										"{{staging3000}}"
+									],
+									"path": [
+										"api",
+										"estate",
+										"draft",
+										"map-view"
+									],
+									"query": [
+										{
+											"key": "sw",
+											"value": "-57.68131256103516%2C-25.505263490227442"
+										},
+										{
+											"key": "se",
+											"value": "-57.56526947021485%2C-25.505263490227442"
+										},
+										{
+											"key": "ne",
+											"value": "-57.56526947021485%2C-25.306166036627506"
+										},
+										{
+											"key": "nw",
+											"value": "-57.68131256103516%2C-25.306166036627506"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "my-estates-list-view",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{staging3000}}/api/estate/my-estates/list-view?pageSize=10&page=1&tipo=string&transaccion=Alquiler&tipoPropiedad=Casa",
+									"host": [
+										"{{staging3000}}"
+									],
+									"path": [
+										"api",
+										"estate",
+										"my-estates",
+										"list-view"
+									],
+									"query": [
+										{
+											"key": "pageSize",
+											"value": "10"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "tipo",
+											"value": "string"
+										},
+										{
+											"key": "transaccion",
+											"value": "Alquiler"
+										},
+										{
+											"key": "tipoPropiedad",
+											"value": "Casa"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "my-estates-map-view",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{staging3000}}/api/estate/my-estates/list-view?pageSize=15&page=2",
+									"host": [
+										"{{staging3000}}"
+									],
+									"path": [
+										"api",
+										"estate",
+										"my-estates",
+										"list-view"
+									],
+									"query": [
+										{
+											"key": "pageSize",
+											"value": "15"
+										},
+										{
+											"key": "page",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get estate por id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{staging3000}}/api/estate/{{id}}",
+									"host": [
+										"{{staging3000}}"
+									],
+									"path": [
+										"api",
+										"estate",
+										"{{id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get linked-clients",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{staging3000}}/api/estate/{{id}}/linked-clients",
+									"host": [
+										"{{staging3000}}"
+									],
+									"path": [
+										"api",
+										"estate",
+										"{{id}}",
+										"linked-clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "see street pictures",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{staging3000}}/api/estate/street-pictures?latitud=-25.2867&longitud=-57.6333",
+									"host": [
+										"{{staging3000}}"
+									],
+									"path": [
+										"api",
+										"estate",
+										"street-pictures"
+									],
+									"query": [
+										{
+											"key": "latitud",
+											"value": "-25.2867"
+										},
+										{
+											"key": "longitud",
+											"value": "-57.6333"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "api state draft",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Access-control-person-code",
+										"value": "{{user_code}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{staging3000}}/api/state/draft/{{id}}",
+									"host": [
+										"{{staging3000}}"
+									],
+									"path": [
+										"api",
+										"state",
+										"draft",
+										"{{id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create estate",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Access-control-person-code",
+										"value": "{{user_code}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"descripcion\": \"Amplia casa de 3 dormitorios con jardín y piscina. Excelente ubicación en el centro de Fernando\",\r\n  \"lat\": 25.2867,\r\n  \"lon\": -57.6333,\r\n  \"titulo\": \"Hermosa casa en el centro (Borrador)\",\r\n  \"comment\": \"Posible oportunidad de inversión\",\r\n  \"referencia\": \"Cerca del Parque Central\",\r\n  \"nro_casa\": \"125\",\r\n  \"catastro\": \"258\",\r\n  \"pais\": \"Paraguay\",\r\n  \"calle\": \"Calle Palma\",\r\n  \"departamento\": \"Central\",\r\n  \"ciudad\": \"Asunción\",\r\n  \"distrito\": \"Catedral\",\r\n  \"venta_alquiler\": \"Venta\",\r\n  \"tipo_propiedad\": \"Terreno\",\r\n  \"precio\": 350000,\r\n  \"moneda_contrato\": \"USD\",\r\n  \"m2\": 200,\r\n  \"m2_cons\": 180,\r\n  \"frente\": 10.5,\r\n  \"fondo\": 19,\r\n  \"esquina\": false,\r\n  \"condominio\": false,\r\n  \"anio\": 2024,\r\n  \"estado\": \"Excelente\",\r\n  \"dormitorios\": 3,\r\n  \"banios\": 2,\r\n  \"garajes\": 2,\r\n  \"tipo_cocina\": \"Integrada\",\r\n  \"cocina_equipada\": true,\r\n  \"quincho\":true,\r\n  \"area_servicio\": true,\r\n  \"piscina\":true,\r\n  \"deposito\": true,\r\n  \"generador\": false,\r\n  \"pisos\": 2,\r\n  \"bauleras\": false,\r\n  \"ascensor\": 0,\r\n  \"balcon\": true,\r\n  \"parrilla\": true,\r\n  \"gimnasio\": false,\r\n  \"pet_friendly\": true,\r\n  \"cocina_propia\": true,\r\n  \"trifacico\": true,\r\n  \"oficinas\": \"0\",\r\n  \"banios_compartidos\":\"1\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{staging3000}}/api/estate",
+									"host": [
+										"{{staging3000}}"
+									],
+									"path": [
+										"api",
+										"estate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create estate draft",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Access-control-person-code",
+										"value": "{{user_code}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lat\": -25.2867,\r\n  \"lon\": -57.6333,\r\n  \"titulo\": \"Hermosa casa en el centro (Borrador)\",\r\n  \"comment\": \"Posible oportunidad de inversión\",\r\n  \"referencia\": \"Cerca del Parque Central\",\r\n  \"nro_casa\": \"156\",\r\n  \"catastro\": \"258\",\r\n  \"pais\": \"Paraguay\",\r\n  \"calle\": \"Calle Palma\",\r\n  \"departamento\": \"Central\",\r\n  \"ciudad\": \"Asunción\",\r\n  \"distrito\": \"Catedral\",\r\n  \"venta_alquiler\": \"Venta\",\r\n  \"tipo_propiedad\": \"Casa\",\r\n  \"precio\": 350000,\r\n  \"moneda_contrato\": \"USD\",\r\n  \"descripcion\": \"Amplia casa de 3 dormitorios con jardín y piscina. Excelente ubicación en el centro de Asunción\",\r\n  \"m2\": 200,\r\n  \"m2_cons\": 180,\r\n  \"dormitorios\": 3,\r\n  \"banios\": 2,\r\n  \"garajes\": 2,\r\n  \"tipo_cocina\": \"Integrada\",\r\n  \"cocina_equipada\": true,\r\n  \"quincho\": true,\r\n  \"area_servicio\": true,\r\n  \"piscina\": true,\r\n  \"deposito\": true,\r\n  \"generador\": true,\r\n  \"frente\": 10.5,\r\n  \"fondo\": 10.9,\r\n  \"pisos\": 2,\r\n  \"bauleras\": false,\r\n  \"ascensor\": 0,\r\n  \"balcon\": true,\r\n  \"parrilla\": true,\r\n  \"gimnasio\": true,\r\n  \"pet_friendly\": true,\r\n  \"condominio\": true,\r\n  \"precio_m2\": 1750,\r\n  \"anio\": 2024,\r\n  \"esquina\": false,\r\n  \"banios_compartidos\": \"1\",\r\n  \"oficinas\": \"0\",\r\n  \"cocina_propia\": true,\r\n  \"trifacico\": true\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{staging3000}}/api/estate/draft",
+									"host": [
+										"{{staging3000}}"
+									],
+									"path": [
+										"api",
+										"estate",
+										"draft"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "generate description",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Access-control-person-code",
+										"value": "{{user_code}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lat\": -25.2867,\r\n  \"lon\": -57.6333,\r\n  \"titulo\": \"string\",\r\n  \"comment\": \"string\",\r\n  \"referencia\": \"string\",\r\n  \"nro_casa\": \"string\",\r\n  \"catastro\": \"string\",\r\n  \"pais\": \"string\",\r\n  \"calle\": \"string\",\r\n  \"departamento\": \"string\",\r\n  \"ciudad\": \"string\",\r\n  \"distrito\": \"string\",\r\n  \"venta_alquiler\": \"string\",\r\n  \"tipo_propiedad\": \"string\",\r\n  \"precio\": 350000,\r\n  \"moneda_contrato\": \"string\",\r\n  \"descripcion\": \"string\",\r\n  \"m2\": 12,\r\n  \"m2_cons\": 13,\r\n  \"dormitorios\": {},\r\n  \"banios\": {},\r\n  \"garajes\": {},\r\n  \"tipo_cocina\": \"string\",\r\n  \"cocina_equipada\": false,\r\n  \"quincho\": false,\r\n  \"area_servicio\": true,\r\n  \"piscina\": true,\r\n  \"deposito\": false,\r\n  \"generador\": false,\r\n  \"frente\": 10,\r\n  \"fondo\": 250,\r\n  \"pisos\": 5,\r\n  \"bauleras\": {},\r\n  \"ascensor\": {},\r\n  \"balcon\": {},\r\n  \"parrilla\": true,\r\n  \"gimnasio\": false,\r\n  \"pet_friendly\": false,\r\n  \"condominio\": true,\r\n  \"precio_m2\": 158,\r\n  \"anio\": {},\r\n  \"esquina\": false,\r\n  \"banios_compartidos\": {},\r\n  \"oficinas\": {},\r\n  \"cocina_propia\": true,\r\n  \"trifacico\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{staging3000}}/api/estate/generate-description",
+									"host": [
+										"{{staging3000}}"
+									],
+									"path": [
+										"api",
+										"estate",
+										"generate-description"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "estate-delete-draft",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+											"});\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Access-control-person-code",
+										"value": "{{user_code}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{staging3000}}/api/estate/draft/120",
+									"host": [
+										"{{staging3000}}"
+									],
+									"path": [
+										"api",
+										"estate",
+										"draft",
+										"120"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Accounts",
+					"item": [
+						{
+							"name": "Obtener balance",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+											"});\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Access-control-person-code",
+										"value": "ba72a2ed6d1af993726c2a84f8b009d27b87100452e28d47498fbacd4f5baaef",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{staging}}/pa/account/{{userCode}}",
+									"host": [
+										"{{staging}}"
+									],
+									"path": [
+										"pa",
+										"account",
+										"{{userCode}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Customers",
+					"item": [
+						{
+							"name": "Obtener actividad de cliente",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+											"});\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{staging3000}}/api/customer/{id}/activity-estate",
+									"host": [
+										"{{staging3000}}"
+									],
+									"path": [
+										"api",
+										"customer",
+										"{id}",
+										"activity-estate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obtener lista de clientes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+											"});\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{staging3000}}/api/customer/list",
+									"host": [
+										"{{staging3000}}"
+									],
+									"path": [
+										"api",
+										"customer",
+										"list"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{acess-token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							"pm.request.headers.add({\r",
+							"    key: 'Access-control-person-code',\r",
+							"    value:'c24da64156d38fbc3f6ba9c1d2066b21b455239874d2e4ee0420508c3b1e8148'\r",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Plan",
+			"item": [
+				{
+					"name": "get plan types",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is between 12-20 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.within(12000, 20000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-control-person-code",
+								"value": "ba72a2ed6d1af993726c2a84f8b009d27b87100452e28d47498fbacd4f5baaef",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{staging3000}}/api/plan/all",
+							"host": [
+								"{{staging3000}}"
+							],
+							"path": [
+								"api",
+								"plan",
+								"all"
+							],
+							"query": [
+								{
+									"key": "read",
+									"value": "0",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "inherit"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "acess-token",
+			"value": "",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "user_code",
+			"value": "c24da64156d38fbc3f6ba9c1d2066b21b455239874d2e4ee0420508c3b1e8148",
+			"type": "string"
+		},
+		{
+			"key": "staging",
+			"value": "http://stg-place-apis-load-balancer-1860870059.sa-east-1.elb.amazonaws.com:8080",
+			"type": "string"
+		},
+		{
+			"key": "staging3000",
+			"value": "http://stg-place-apis-load-balancer-1860870059.sa-east-1.elb.amazonaws.com:3000",
+			"type": "string"
+		}
+	]
+}
