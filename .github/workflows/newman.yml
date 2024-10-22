@@ -42,8 +42,8 @@ jobs:
 
       - name: Run Newman tests with htmlextra reporter
         run: |
-          newman run PlaceAnalyzer.json --reporters htmlextra --reporter-htmlextra-export newman-report.html || true
-        
+          newman run MinegocioAPIs.postman_collection.json --reporters htmlextra --reporter-htmlextra-export newman-report.html || true
+        # continua en caso de error
         continue-on-error: true
 
       - name: Upload HTML report
