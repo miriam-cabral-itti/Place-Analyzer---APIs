@@ -39,7 +39,7 @@ jobs:
 
       - name: Run Newman tests with htmlextra reporter
         run: |
-          newman run "PlaceAnalyzer.postman_collection.json" --reporters htmlextra --reporter-htmlextra-export newman-report.html || true
+          newman run PlaceAnalyzer.postman_collection.json --reporters htmlextra --reporter-htmlextra-export newman-report.html || true
         continue-on-error: true
 
       - name: List files after Newman run (Optional)
