@@ -4,7 +4,7 @@
 		"name": "PlaceAnalyzer",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "37271661",
-		"_collection_link": "https://team-de-ejemplo.postman.co/workspace/Team-de-ejemplo-Workspace~a65d5975-d09b-4aa3-8543-6dde9ae2b54c/collection/37271661-fbbba38b-67dd-45bd-a064-c6b2640a8e5f?action=share&source=collection_link&creator=37271661"
+		"_collection_link": "https://team-de-ejemplo.postman.co/workspace/QA-Automation-Team~a65d5975-d09b-4aa3-8543-6dde9ae2b54c/collection/37271661-fbbba38b-67dd-45bd-a064-c6b2640a8e5f?action=share&source=collection_link&creator=37271661"
 	},
 	"item": [
 		{
@@ -92,16 +92,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://stg-place-apis-load-balancer-1860870059.sa-east-1.elb.amazonaws.com:3000/api/auth/sign-in",
-							"protocol": "http",
+							"raw": "{{staging}}/api/auth/sign-in",
 							"host": [
-								"stg-place-apis-load-balancer-1860870059",
-								"sa-east-1",
-								"elb",
-								"amazonaws",
-								"com"
+								"{{staging}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"auth",
@@ -149,16 +143,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://stg-place-apis-load-balancer-1860870059.sa-east-1.elb.amazonaws.com:3000/api/auth/api-sign-in",
-							"protocol": "http",
+							"raw": "{{staging}}/api/auth/api-sign-in",
 							"host": [
-								"stg-place-apis-load-balancer-1860870059",
-								"sa-east-1",
-								"elb",
-								"amazonaws",
-								"com"
+								"{{staging}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"auth",
@@ -221,16 +209,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://stg-place-apis-load-balancer-1860870059.sa-east-1.elb.amazonaws.com:3000/api/auth/change-password",
-							"protocol": "http",
+							"raw": "{{staging}}/api/auth/change-password",
 							"host": [
-								"stg-place-apis-load-balancer-1860870059",
-								"sa-east-1",
-								"elb",
-								"amazonaws",
-								"com"
+								"{{staging}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"auth",
@@ -289,9 +271,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{staging3000}}/api/appraisal/async",
+							"raw": "{{staging}}/api/appraisal/async",
 							"host": [
-								"{{staging3000}}"
+								"{{staging}}"
 							],
 							"path": [
 								"api",
@@ -348,9 +330,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{staging3000}}/api/appraisal/async",
+							"raw": "{{staging}}/api/appraisal/async",
 							"host": [
-								"{{staging3000}}"
+								"{{staging}}"
 							],
 							"path": [
 								"api",
@@ -406,9 +388,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{staging3000}}/api/appraisal/async",
+							"raw": "{{staging}}/api/appraisal/async",
 							"host": [
-								"{{staging3000}}"
+								"{{staging}}"
 							],
 							"path": [
 								"api",
@@ -465,9 +447,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{staging3000}}/api/appraisal/async",
+							"raw": "{{staging}}/api/appraisal/async",
 							"host": [
-								"{{staging3000}}"
+								"{{staging}}"
 							],
 							"path": [
 								"api",
@@ -524,9 +506,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{staging3000}}/api/appraisal/async",
+							"raw": "{{staging}}/api/appraisal/async",
 							"host": [
-								"{{staging3000}}"
+								"{{staging}}"
 							],
 							"path": [
 								"api",
@@ -579,9 +561,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{staging3000}}/api/appraisal/async",
+							"raw": "{{staging}}/api/appraisal/async",
 							"host": [
-								"{{staging3000}}"
+								"{{staging}}"
 							],
 							"path": [
 								"api",
@@ -637,9 +619,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{staging3000}}/api/appraisal/async",
+							"raw": "{{staging}}/api/appraisal/async",
 							"host": [
-								"{{staging3000}}"
+								"{{staging}}"
 							],
 							"path": [
 								"api",
@@ -696,9 +678,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{staging3000}}/api/appraisal/async",
+							"raw": "{{staging}}/api/appraisal/async",
 							"host": [
-								"{{staging3000}}"
+								"{{staging}}"
 							],
 							"path": [
 								"api",
@@ -755,9 +737,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{staging3000}}/api/appraisal/async",
+							"raw": "{{staging}}/api/appraisal/async",
 							"host": [
-								"{{staging3000}}"
+								"{{staging}}"
 							],
 							"path": [
 								"api",
@@ -814,9 +796,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{staging3000}}/api/appraisal/async",
+							"raw": "{{staging}}/api/appraisal/async",
 							"host": [
-								"{{staging3000}}"
+								"{{staging}}"
 							],
 							"path": [
 								"api",
@@ -869,9 +851,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{staging3000}}/api/appraisal/async",
+							"raw": "{{staging}}/api/appraisal/async",
 							"host": [
-								"{{staging3000}}"
+								"{{staging}}"
 							],
 							"path": [
 								"api",
@@ -977,9 +959,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{staging3000}}/api/appraisal/{{requestId}}",
+							"raw": "{{staging}}/api/appraisal/{{requestId}}",
 							"host": [
-								"{{staging3000}}"
+								"{{staging}}"
 							],
 							"path": [
 								"api",
@@ -1033,9 +1015,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{staging3000}}/api/appraisal/retry",
+							"raw": "{{staging}}/api/appraisal/retry",
 							"host": [
-								"{{staging3000}}"
+								"{{staging}}"
 							],
 							"path": [
 								"api",
@@ -1079,9 +1061,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{staging3000}}/api/appraisal/sectors",
+							"raw": "{{staging}}/api/appraisal/sectors",
 							"host": [
-								"{{staging3000}}"
+								"{{staging}}"
 							],
 							"path": [
 								"api",
@@ -1125,9 +1107,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{staging3000}}/api/appraisal/sectors/Agroganadero/types",
+							"raw": "{{staging}}/api/appraisal/sectors/Agroganadero/types",
 							"host": [
-								"{{staging3000}}"
+								"{{staging}}"
 							],
 							"path": [
 								"api",
@@ -1173,9 +1155,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{staging3000}}/api/appraisal/sectors/UnexistentType/types",
+							"raw": "{{staging}}/api/appraisal/sectors/UnexistentType/types",
 							"host": [
-								"{{staging3000}}"
+								"{{staging}}"
 							],
 							"path": [
 								"api",
@@ -1221,9 +1203,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{staging3000}}/api/appraisal/history/map-view?sw=-57.57147073745728,-25.271845197467485&ne=-57.56934642791749,-25.259542431244885&se=-57.56934642791749,-25.271845197467485&nw=-57.57147073745728,-25.259542431244885",
+							"raw": "{{staging}}/api/appraisal/history/map-view?sw=-57.57147073745728,-25.271845197467485&ne=-57.56934642791749,-25.259542431244885&se=-57.56934642791749,-25.271845197467485&nw=-57.57147073745728,-25.259542431244885",
 							"host": [
-								"{{staging3000}}"
+								"{{staging}}"
 							],
 							"path": [
 								"api",
@@ -1286,9 +1268,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{staging3000}}/api/appraisal/history/list-view?&desde=2024-10-11&hasta=2024-10-31&page=0&size=20",
+							"raw": "{{staging}}/api/appraisal/history/list-view?&desde=2024-10-11&hasta=2024-10-31&page=0&size=20",
 							"host": [
-								"{{staging3000}}"
+								"{{staging}}"
 							],
 							"path": [
 								"api",
@@ -1355,9 +1337,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{staging3000}}/api/appraisal/history/list-view?&desde=2024-12-11&hasta=2024-10-31&page=0&size=20",
+							"raw": "{{staging}}/api/appraisal/history/list-view?&desde=2024-12-11&hasta=2024-10-31&page=0&size=20",
 							"host": [
-								"{{staging3000}}"
+								"{{staging}}"
 							],
 							"path": [
 								"api",
@@ -1424,9 +1406,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{staging3000}}/api/appraisal/history/list-view?&tipo=Todos&desde=2024-10-11&hasta=2024-10-31&page=0&size=20",
+							"raw": "{{staging}}/api/appraisal/history/list-view?&tipo=Todos&desde=2024-10-11&hasta=2024-10-31&page=0&size=20",
 							"host": [
-								"{{staging3000}}"
+								"{{staging}}"
 							],
 							"path": [
 								"api",
@@ -1509,9 +1491,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{staging3000}}/api/company/all",
+							"raw": "{{staging}}/api/company/all",
 							"host": [
-								"{{staging3000}}"
+								"{{staging}}"
 							],
 							"path": [
 								"api",
@@ -1581,9 +1563,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{staging3000}}/api/company/425/agency",
+							"raw": "{{staging}}/api/company/425/agency",
 							"host": [
-								"{{staging3000}}"
+								"{{staging}}"
 							],
 							"path": [
 								"api",
@@ -1642,9 +1624,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{staging3000}}/api/company/agency/1037/positions",
+							"raw": "{{staging}}/api/company/agency/1037/positions",
 							"host": [
-								"{{staging3000}}"
+								"{{staging}}"
 							],
 							"path": [
 								"api",
@@ -1702,9 +1684,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{staging3000}}/api/notification/list?page=0&type=REPORT_READY&read=false",
+							"raw": "{{staging}}/api/notification/list?page=0&type=REPORT_READY&read=false",
 							"host": [
-								"{{staging3000}}"
+								"{{staging}}"
 							],
 							"path": [
 								"api",
@@ -1762,9 +1744,9 @@
 						"method": "PATCH",
 						"header": [],
 						"url": {
-							"raw": "{{staging3000}}/api/notification/426/read",
+							"raw": "{{staging}}/api/notification/426/read",
 							"host": [
-								"{{staging3000}}"
+								"{{staging}}"
 							],
 							"path": [
 								"api",
@@ -1824,9 +1806,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{staging3000}}/api/placeview/fotos360?usuario_id=3866&search=&zoomFilter=true&nw=-57.58882999420167%2C-25.261629140594838&ne=-57.57925987243653%2C-25.261629140594838&se=-57.57925987243653%2C-25.266849146551007&sw=-57.58882999420167%2C-25.266849146551007",
+									"raw": "{{staging}}/api/placeview/fotos360?usuario_id=3866&search=&zoomFilter=true&nw=-57.58882999420167%2C-25.261629140594838&ne=-57.57925987243653%2C-25.261629140594838&se=-57.57925987243653%2C-25.266849146551007&sw=-57.58882999420167%2C-25.266849146551007",
 									"host": [
-										"{{staging3000}}"
+										"{{staging}}"
 									],
 									"path": [
 										"api",
@@ -1926,9 +1908,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{staging3000}}/api/placeview/fotos360/vistas",
+									"raw": "{{staging}}/api/placeview/fotos360/vistas",
 									"host": [
-										"{{staging3000}}"
+										"{{staging}}"
 									],
 									"path": [
 										"api",
@@ -1989,9 +1971,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{staging3000}}/api/placeview/fotos360/vistas/22264",
+									"raw": "{{staging}}/api/placeview/fotos360/vistas/22264",
 									"host": [
-										"{{staging3000}}"
+										"{{staging}}"
 									],
 									"path": [
 										"api",
@@ -2341,9 +2323,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{staging3000}}/api/estate/map-view?sw=-57.68131256103516%2C-25.505263490227442&se=-57.56526947021485%2C-25.505263490227442&ne=-57.56526947021485%2C-25.306166036627506&nw=-57.68131256103516%2C-25.306166036627506&TipoPropiedad=departamento",
+									"raw": "{{staging}}/api/estate/map-view?sw=-57.68131256103516%2C-25.505263490227442&se=-57.56526947021485%2C-25.505263490227442&ne=-57.56526947021485%2C-25.306166036627506&nw=-57.68131256103516%2C-25.306166036627506&TipoPropiedad=departamento",
 									"host": [
-										"{{staging3000}}"
+										"{{staging}}"
 									],
 									"path": [
 										"api",
@@ -2414,9 +2396,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{staging3000}}/api/estate/list-view?pageSize=15&page=2",
+									"raw": "{{staging}}/api/estate/list-view?pageSize=15&page=2",
 									"host": [
-										"{{staging3000}}"
+										"{{staging}}"
 									],
 									"path": [
 										"api",
@@ -2459,9 +2441,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{staging3000}}/api/estate/draft/list-view?pageSize=15&borrador=true&page=1",
+									"raw": "{{staging}}/api/estate/draft/list-view?pageSize=15&borrador=true&page=1",
 									"host": [
-										"{{staging3000}}"
+										"{{staging}}"
 									],
 									"path": [
 										"api",
@@ -2509,9 +2491,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{staging3000}}/api/estate/draft/map-view?sw=-57.68131256103516%2C-25.505263490227442&se=-57.56526947021485%2C-25.505263490227442&ne=-57.56526947021485%2C-25.306166036627506&nw=-57.68131256103516%2C-25.306166036627506",
+									"raw": "{{staging}}/api/estate/draft/map-view?sw=-57.68131256103516%2C-25.505263490227442&se=-57.56526947021485%2C-25.505263490227442&ne=-57.56526947021485%2C-25.306166036627506&nw=-57.68131256103516%2C-25.306166036627506",
 									"host": [
-										"{{staging3000}}"
+										"{{staging}}"
 									],
 									"path": [
 										"api",
@@ -2557,9 +2539,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{staging3000}}/api/estate/my-estates/list-view?pageSize=10&page=1&tipo=string&transaccion=Alquiler&tipoPropiedad=Casa",
+									"raw": "{{staging}}/api/estate/my-estates/list-view?pageSize=10&page=1&tipo=string&transaccion=Alquiler&tipoPropiedad=Casa",
 									"host": [
-										"{{staging3000}}"
+										"{{staging}}"
 									],
 									"path": [
 										"api",
@@ -2609,9 +2591,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{staging3000}}/api/estate/my-estates/list-view?pageSize=15&page=2",
+									"raw": "{{staging}}/api/estate/my-estates/list-view?pageSize=15&page=2",
 									"host": [
-										"{{staging3000}}"
+										"{{staging}}"
 									],
 									"path": [
 										"api",
@@ -2649,9 +2631,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{staging3000}}/api/estate/{{id}}",
+									"raw": "{{staging}}/api/estate/{{id}}",
 									"host": [
-										"{{staging3000}}"
+										"{{staging}}"
 									],
 									"path": [
 										"api",
@@ -2678,9 +2660,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{staging3000}}/api/estate/{{id}}/linked-clients",
+									"raw": "{{staging}}/api/estate/{{id}}/linked-clients",
 									"host": [
-										"{{staging3000}}"
+										"{{staging}}"
 									],
 									"path": [
 										"api",
@@ -2708,9 +2690,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{staging3000}}/api/estate/street-pictures?latitud=-25.2867&longitud=-57.6333",
+									"raw": "{{staging}}/api/estate/street-pictures?latitud=-25.2867&longitud=-57.6333",
 									"host": [
-										"{{staging3000}}"
+										"{{staging}}"
 									],
 									"path": [
 										"api",
@@ -2753,9 +2735,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{staging3000}}/api/state/draft/{{id}}",
+									"raw": "{{staging}}/api/state/draft/{{id}}",
 									"host": [
-										"{{staging3000}}"
+										"{{staging}}"
 									],
 									"path": [
 										"api",
@@ -2799,9 +2781,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{staging3000}}/api/estate",
+									"raw": "{{staging}}/api/estate",
 									"host": [
-										"{{staging3000}}"
+										"{{staging}}"
 									],
 									"path": [
 										"api",
@@ -2842,9 +2824,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{staging3000}}/api/estate/draft",
+									"raw": "{{staging}}/api/estate/draft",
 									"host": [
-										"{{staging3000}}"
+										"{{staging}}"
 									],
 									"path": [
 										"api",
@@ -2887,9 +2869,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{staging3000}}/api/estate/generate-description",
+									"raw": "{{staging}}/api/estate/generate-description",
 									"host": [
-										"{{staging3000}}"
+										"{{staging}}"
 									],
 									"path": [
 										"api",
@@ -2940,9 +2922,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{staging3000}}/api/estate/draft/120",
+									"raw": "{{staging}}/api/estate/draft/120",
 									"host": [
-										"{{staging3000}}"
+										"{{staging}}"
 									],
 									"path": [
 										"api",
@@ -3050,9 +3032,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{staging3000}}/api/customer/{id}/activity-estate",
+									"raw": "{{staging}}/api/customer/{id}/activity-estate",
 									"host": [
-										"{{staging3000}}"
+										"{{staging}}"
 									],
 									"path": [
 										"api",
@@ -3097,9 +3079,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{staging3000}}/api/customer/list",
+									"raw": "{{staging}}/api/customer/list",
 									"host": [
-										"{{staging3000}}"
+										"{{staging}}"
 									],
 									"path": [
 										"api",
@@ -3192,9 +3174,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{staging3000}}/api/plan/all",
+							"raw": "{{staging}}/api/plan/all",
 							"host": [
-								"{{staging3000}}"
+								"{{staging}}"
 							],
 							"path": [
 								"api",
@@ -3253,13 +3235,13 @@
 			"type": "string"
 		},
 		{
-			"key": "staging",
+			"key": "stagingotro",
 			"value": "http://stg-place-apis-load-balancer-1860870059.sa-east-1.elb.amazonaws.com:8080",
 			"type": "string"
 		},
 		{
-			"key": "staging3000",
-			"value": "http://stg-place-apis-load-balancer-1860870059.sa-east-1.elb.amazonaws.com:3000",
+			"key": "staging",
+			"value": "hhttps://staging.placeanalyzer.itti.digital/en/login?callbackUrl=https%3A%2F%2Fstaging.placeanalyzer.itti.digital%2Fplace-analyzer",
 			"type": "string"
 		}
 	]
